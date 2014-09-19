@@ -44,7 +44,10 @@
 						direction = "up";
 				}
 				
-				p.innerHTML = "First touch: " + firstTouch.clientX + "," + firstTouch.clientY + " | Last touch: " + lastTouch.clientX + "," + lastTouch.clientY + " | Difference: " + dX + "," + dY + " | Direction: " + direction;
+				p.innerHTML = "First touch: " + firstTouch.clientX + "," + firstTouch.clientY + 
+					" \n Last touch: " + lastTouch.clientX + "," + lastTouch.clientY + 
+					" \n Difference: " + dX + "," + dY + 
+					" \n Direction: " + direction;
 				
 				firstTouch = undefined;
 			}
