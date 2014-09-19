@@ -11,8 +11,8 @@ var GraphicsManager = function(gameManager, rockImage, paperImage, scissorsImage
 	};
 	
 	this.resize = function() {
-		this.canvas.height = window.innerHeight * 0.95;
-		this.canvas.width = window.innerWidth * 0.95;
+		this.canvas.height = window.innerHeight * 0.50;
+		this.canvas.width = window.innerWidth * 0.50;
 		
 		this.outerHeight = this.canvas.height / this.gameManager.rows;
 		this.outerWidth = this.canvas.width / this.gameManager.columns;
