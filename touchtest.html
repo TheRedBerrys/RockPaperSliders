@@ -22,7 +22,7 @@
 		document.body.addEventListener("touchend", function(evt) {
 			evt.preventDefault();
 			var p = document.getElementById("p");
-			var lastTouch = evt.changedTouches[0];
+			var lastTouch = evt.changedTouches.pop();
 			
 			if (firstTouch) {
 				var dX = lastTouch.clientX - firstTouch.clientX;
