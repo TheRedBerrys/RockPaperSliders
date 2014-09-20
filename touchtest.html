@@ -58,7 +58,8 @@
 				firstTouch = null;
 			}
 			else {
-				p.innerHTML = "Couldn't get first touch. | Last touch: " + lastTouch.clientX + "," + lastTouch.clientY;
+				p.innerHTML = "Couldn't get first touch. | Last touch: " + lastTouch.clientX + "," + lastTouch.clientY + 
+					" <br> " + p.innerHTML;;
 			}
 		}, false);
 		
