@@ -15,7 +15,7 @@
 		var firstTouch = null;
 		var p = document.getElementById("p");
 		
-		document.body.addEventListener("touchstart", function(evt) {
+		document.addEventListener("touchstart", function(evt) {
 			evt.preventDefault();
 			if (!firstTouch) {
 				firstTouch = evt.changedTouches[0];
@@ -24,11 +24,11 @@
 			}
 		}, false);
 		
-		document.body.addEventListener("touchmove", function(evt) {
+		document.addEventListener("touchmove", function(evt) {
 			evt.preventDefault();
 		}, false);
 		
-		document.body.addEventListener("touchend", function(evt) {
+		document.addEventListener("touchend", function(evt) {
 			evt.preventDefault();
 			var lastTouch = evt.changedTouches[0];
 			
