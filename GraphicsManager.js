@@ -49,9 +49,18 @@ var GraphicsManager = function(gameManager, rockImage, paperImage, scissorsImage
 		this.context.strokeRect(startingX+(this.cornerRadius/2), startingY+(this.cornerRadius/2), this.innerWidth-this.cornerRadius, this.innerHeight-this.cornerRadius);
 		this.context.drawImage(image, startingX+(this.cornerRadius/2), startingY+(this.cornerRadius/2), this.innerWidth-this.cornerRadius, this.innerHeight-this.cornerRadius);
 	};
+	
+	this.clearContext = function() {
+		this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+		if(STX.isAndroid && !STX.is_chrome) {
+			var w=canvas.width;
+			canvas.width=1;
+			canvas.width=w;
+		}
+	};
 
 	this.draw = function() {
-		this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+		this.clearContext();
 		this.context.lineJoin = "round";
 		this.context.strokeStyle = "black";
 		this.context.lineWidth = this.cornerRadius;
