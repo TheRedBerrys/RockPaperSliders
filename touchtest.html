@@ -18,7 +18,7 @@
 		
 		document.addEventListener("touchstart", function(evt) {
 			evt.preventDefault();
-			if (!firstTouch) {
+			if (!firstTouchX || !firstTouchY) {
 				firstTouchX = evt.changedTouches[0].clientX;
 				firstTouchY = evt.changedTouches[0].clientY;
 				p.innerHTML = "Start touch: " + firstTouchX + "," + firstTouchY + 
