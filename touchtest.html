@@ -24,6 +24,10 @@
 			}
 		}, false);
 		
+		document.body.addEventListener("touchmove", function(evt) {
+			evt.preventDefault();
+		}, false);
+		
 		document.body.addEventListener("touchend", function(evt) {
 			evt.preventDefault();
 			var lastTouch = evt.touches[0];
