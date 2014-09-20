@@ -1,8 +1,6 @@
 var gameManager, graphicsManager;
 
-var rows = 4;
-var columns = 4;
-var seed = 2;
+var currLevel = 0;
 	
 var imagesLoaded = {};
 imagesLoaded.rock = false;
@@ -38,13 +36,13 @@ scissorsImage.onload = function() {
 };
 
 var reset = function() {
-	gameManager = new GameManager(rows, columns, seed);
+	gameManager = new GameManager(Levels[currLevel]);
 	graphicsManager = new GraphicsManager(gameManager, rockImage, paperImage, scissorsImage);
 	redraw();
 };
 
 var startNextGame = function() {
-	seed++;
+	currLevel++;
 	reset();
 };
 

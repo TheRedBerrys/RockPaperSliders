@@ -1,9 +1,4 @@
-GameManager = function(rows, columns, seed) {
-	Math.seedrandom(seed);
-	
-	this.getRandomInteger = function(exclusiveEnd) {
-		return Math.floor((Math.random() * exclusiveEnd));
-	};
+GameManager = function(level) {
 	
 	this.isSuccess = function() {
 		var tile = this.tiles[0][0];
@@ -36,24 +31,14 @@ GameManager = function(rows, columns, seed) {
 		return true;
 	};
 	
-	this.getNextTile = function() {
-		var rand = this.getRandomInteger(3);
-		if (rand === 0)
-			return "R";
-		else if (rand === 1)
-			return "P";
-		else
-			return "S";
-	};
-	
-	this.getTiles = function() {
+	this.getTiles = function(tileString) {
 		var newTiles = [];
 		for (row = 0; row < this.rows; row++)
 		{
 			var currTiles = [];
 			for (column = 0; column < this.columns; column++)
 			{
-				currTiles.push(this.getNextTile());
+				currTiles.push(tileString.substring(this.columns * row + column, this.columns * row + column + 1));
 			}
 			newTiles.push(currTiles);
 		}
@@ -99,9 +84,9 @@ GameManager = function(rows, columns, seed) {
 		return "BAD";
 	};
 	
-	this.rows = rows;
-	this.columns = columns;
-	this.tiles = this.getTiles();
-	this.selectedRow = this.getRandomInteger(this.rows);
-	this.selectedColumn = this.getRandomInteger(this.columns);
+	this.rows = level.rows;
+	this.columns = level.columns;
+	this.tiles = this.getTiles(level.tiles);
+	this.selectedRow = level.selectedRow;
+	this.selectedColumn = level.selectedColumn;
 };
