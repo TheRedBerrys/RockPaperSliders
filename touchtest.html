@@ -34,7 +34,7 @@
 			evt.preventDefault();
 			var lastTouch = evt.changedTouches[0];
 			
-			if (firstTouch) {
+			if (firstTouchX && firstTouchY) {
 				var dX = lastTouch.clientX - firstTouchX;
 				var dY = lastTouch.clientY - firstTouchY;
 				
