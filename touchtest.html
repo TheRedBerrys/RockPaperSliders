@@ -12,17 +12,18 @@
 	</body>
 	<script type="text/javascript">
 
-		var firstTouch;
+		var firstTouch = undefined;
 		
 		document.body.addEventListener("touchstart", function(evt) {
 			evt.preventDefault();
-			firstTouch = evt.changedTouches[0];
+			if (!firstTouch)
+				firstTouch = evt.changedTouches[0];
 		}, false);
 		
 		document.body.addEventListener("touchend", function(evt) {
 			evt.preventDefault();
 			var p = document.getElementById("p");
-			var lastTouch = evt.changedTouches.pop();
+			var lastTouch = evt.changedTouches[0];
 			
 			if (firstTouch) {
 				var dX = lastTouch.clientX - firstTouch.clientX;
