@@ -12,14 +12,16 @@
 	</body>
 	<script type="text/javascript">
 
-		var firstTouch = null;
+		var firstTouchX = null;
+		var firstTouchY = null;
 		var p = document.getElementById("p");
 		
 		document.addEventListener("touchstart", function(evt) {
 			evt.preventDefault();
 			if (!firstTouch) {
-				firstTouch = evt.changedTouches[0];
-				p.innerHTML = "Start touch: " + firstTouch.clientX + "," + firstTouch.clientY + 
+				firstTouchX = evt.changedTouches[0].clientX;
+				firstTouchY = evt.changedTouches[0].clientY;
+				p.innerHTML = "Start touch: " + firstTouchX + "," + firstTouchY + 
 					" <br> " + p.innerHTML;
 			}
 		}, false);
@@ -33,8 +35,8 @@
 			var lastTouch = evt.changedTouches[0];
 			
 			if (firstTouch) {
-				var dX = lastTouch.clientX - firstTouch.clientX;
-				var dY = lastTouch.clientY - firstTouch.clientY;
+				var dX = lastTouch.clientX - firstTouchX;
+				var dY = lastTouch.clientY - firstTouchY;
 				
 				var direction = "";
 				if (Math.abs(dX) > Math.abs(dY)) {
@@ -50,13 +52,14 @@
 						direction = "up";
 				}
 				
-				p.innerHTML = "First touch: " + firstTouch.clientX + "," + firstTouch.clientY + 
+				p.innerHTML = "First touch: " + firstTouchX + "," + firstTouchY + 
 					" <br> Last touch: " + lastTouch.clientX + "," + lastTouch.clientY + 
 					" <br> Difference: " + dX + "," + dY + 
 					" <br> Direction: " + direction + 
 					" <br> " + p.innerHTML;
 				
-				firstTouch = null;
+				firstTouchX = null;
+				firstTouchY = null;
 			}
 			else {
 				p.innerHTML = "Couldn't get first touch. | Last touch: " + lastTouch.clientX + "," + lastTouch.clientY + 
