@@ -19,8 +19,8 @@
 
 		function handleTouchStart(evt) {   
 			var p = document.getElementById("p");
-			xDown = evt.touches[0].clientX;                                      
-			yDown = evt.touches[0].clientY;  
+			xDown = evt.changedTouches[0].clientX;                                      
+			yDown = evt.changedTouches[0].clientY;  
 			p.innerHTML = "X: " + xDown + " | Y: " + yDown;
 			evt.preventDefault();                                    
 		};                                                
@@ -33,8 +33,8 @@
 				return;
 			}
 
-			var xUp = evt.touches[0].clientX;                                    
-			var yUp = evt.touches[0].clientY;
+			var xUp = evt.changedTouches[0].clientX;                                    
+			var yUp = evt.changedTouches[0].clientY;
 
 			var xDiff = xDown - xUp;
 			var yDiff = yDown - yUp;
