@@ -8,7 +8,7 @@
 		</style>
 	</head>
 	<body>
-		<p id="p">Hello</p>
+		<p id="p">touchtest2</p>
 	</body>
 	<script type="text/javascript">
 		document.addEventListener('touchstart', handleTouchStart, false);        
@@ -17,14 +17,15 @@
 		var xDown = null;                                                        
 		var yDown = null;                                                        
 
-		function handleTouchStart(evt) {     
-			evt.preventDefault();
+		function handleTouchStart(evt) {   
+			var p = document.getElementById("p");
 			xDown = evt.touches[0].clientX;                                      
-			yDown = evt.touches[0].clientY;                                      
+			yDown = evt.touches[0].clientY;  
+			p.innerHTML = "X: " + xDown + " | Y: " + yDown;
+			evt.preventDefault();                                    
 		};                                                
 
 		function handleTouchMove(evt) {
-			evt.preventDefault();
 			var p = document.getElementById("p");
 			if ( ! xDown || ! yDown ) {
 				p.innerHTML = "no first touch";
@@ -52,7 +53,8 @@
 			}
 			/* reset values */
 			xDown = null;
-			yDown = null;                                             
+			yDown = null;       
+			evt.preventDefault();                                      
 		};
 	</script>
 </html>
