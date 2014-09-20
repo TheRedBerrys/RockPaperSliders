@@ -27,6 +27,7 @@
 
 		function handleTouchMove(evt) {
 			var p = document.getElementById("p");
+			p.innerHTML = "got to handle touch";
 			if ( ! xDown || ! yDown ) {
 				p.innerHTML = "no first touch";
 				return;
