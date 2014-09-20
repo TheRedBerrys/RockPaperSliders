@@ -1,4 +1,4 @@
-div {
+.title {
 	font-family: "Trebuchet MS", Helvetica, sans-serif;
 	font-size: 24pt;
 	border: 2px solid;
@@ -7,6 +7,12 @@ div {
 	background-color: #faf8ef;
 }
 
+.container {
+	overflow: visible;
+	z-index: 1;
+}
+
 body {
+	overflow: visible;
 	z-index: 1;
 }
