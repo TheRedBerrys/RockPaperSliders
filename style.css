@@ -5,5 +5,8 @@ div {
 	border-radius: 10px;
 	width: 325px;
 	background-color: #faf8ef;
+}
+
+body {
 	z-index: 1;
 }
