@@ -24,7 +24,7 @@
 			}
 		}, false);
 		
-		document.body.addEventListener("touchend", function(evt) {
+		document.body.addEventListener("touchmove", function(evt) {
 			evt.preventDefault();
 			var p = document.getElementById("p");
 			var lastTouch = evt.changedTouches[0];
