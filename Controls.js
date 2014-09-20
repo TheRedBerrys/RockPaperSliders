@@ -20,11 +20,13 @@ document.addEventListener('keydown', function(event) {
 	}
 });
 
-var firstTouch;
+var firstTouchX = null
+var firstTouchY = null;
 
 document.body.addEventListener("touchstart", function(evt) {
 	evt.preventDefault();
-	firstTouch = evt.changedTouches[0];
+	firstTouchX = evt.changedTouches[0].clientX;
+	firstTouchY = evt.changedTouches[0].clientY;
 }, false);
 
 document.body.addEventListener("touchend", function(evt) {
@@ -32,14 +34,14 @@ document.body.addEventListener("touchend", function(evt) {
 	var lastTouch = evt.changedTouches[0];
 	var direction = "";
 	
-	if (firstTouch)
+	if (firstTouchX && firstTouchY)
 	{
-		var dX = lastTouch.clientX - firstTouch.clientX;
-		var dY = lastTouch.clientY - firstTouch.clientY;
+		var dX = lastTouch.clientX - firstTouchX;
+		var dY = lastTouch.clientY - firstTouchY;
 		var absDX = Math.abs(dX);
 		var absDY = Math.abs(dY);
 		
-		if (absDX > absDY)
+		if (Math.abs(dX) > Math.abs(dY))
 		{
 			if (dX > 0)
 				direction = "right";
@@ -54,7 +56,8 @@ document.body.addEventListener("touchend", function(evt) {
 				direction = "up";
 		}
 		
-		firstTouch = undefined;
+		firstTouchX = null;
+		firstTouchY = null;
 	}
 	
 	if (direction !== "") {
