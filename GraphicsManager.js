@@ -69,7 +69,7 @@ var GraphicsManager = function(gameManager, rockImage, paperImage, scissorsImage
 		var width = this.outerWidth - this.widthPadding;
 		var height = this.outerHeight - this.heightPadding;
 		this.context.strokeRect(startX, startY, width, height);
-	}
+	};
 	
 	this.setup(gameManager, rockImage, paperImage, scissorsImage);
 	this.resize();
