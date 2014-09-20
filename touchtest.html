@@ -16,8 +16,12 @@
 		
 		document.body.addEventListener("touchstart", function(evt) {
 			evt.preventDefault();
-			if (!firstTouch)
+			if (!firstTouch) {
 				firstTouch = evt.changedTouches[0];
+				var p = document.getElementById("p");
+				p.innerHTML = "Start touch: " + firstTouch.clientX + "," + firstTouch.clientY + 
+					" <br> " + p.innerHTML;
+			}
 		}, false);
 		
 		document.body.addEventListener("touchend", function(evt) {
@@ -48,7 +52,8 @@
 				p.innerHTML = "First touch: " + firstTouch.clientX + "," + firstTouch.clientY + 
 					" <br> Last touch: " + lastTouch.clientX + "," + lastTouch.clientY + 
 					" <br> Difference: " + dX + "," + dY + 
-					" <br> Direction: " + direction;
+					" <br> Direction: " + direction + 
+					" <br> " + p.innerHTML;
 				
 				firstTouch = null;
 			}
