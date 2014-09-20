@@ -18,7 +18,7 @@
 		document.body.addEventListener("touchstart", function(evt) {
 			evt.preventDefault();
 			if (!firstTouch) {
-				firstTouch = evt.touches[0];
+				firstTouch = evt.changedTouches[0];
 				p.innerHTML = "Start touch: " + firstTouch.clientX + "," + firstTouch.clientY + 
 					" <br> " + p.innerHTML;
 			}
@@ -30,7 +30,7 @@
 		
 		document.body.addEventListener("touchend", function(evt) {
 			evt.preventDefault();
-			var lastTouch = evt.touches[0];
+			var lastTouch = evt.changedTouches[0];
 			
 			if (firstTouch) {
 				var dX = lastTouch.clientX - firstTouch.clientX;
