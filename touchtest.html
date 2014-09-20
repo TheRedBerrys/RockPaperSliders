@@ -12,7 +12,7 @@
 	</body>
 	<script type="text/javascript">
 
-		var firstTouch = undefined;
+		var firstTouch = null;
 		
 		document.body.addEventListener("touchstart", function(evt) {
 			evt.preventDefault();
@@ -50,7 +50,7 @@
 					" <br> Difference: " + dX + "," + dY + 
 					" <br> Direction: " + direction;
 				
-				firstTouch = undefined;
+				firstTouch = null;
 			}
 			else {
 				p.innerHTML = "Couldn't get first touch. | Last touch: " + lastTouch.clientX + "," + lastTouch.clientY;
