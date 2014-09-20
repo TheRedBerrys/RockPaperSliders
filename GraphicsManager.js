@@ -52,11 +52,7 @@ var GraphicsManager = function(gameManager, rockImage, paperImage, scissorsImage
 	
 	this.clearContext = function() {
 		this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
-		if(STX.isAndroid && !STX.is_chrome) {
-			var w=canvas.width;
-			canvas.width=1;
-			canvas.width=w;
-		}
+		canvas.width = canvas.width;
 	};
 
 	this.draw = function() {
