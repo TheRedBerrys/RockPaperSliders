@@ -14,21 +14,19 @@
 		document.addEventListener('touchstart', handleTouchStart, false);        
 		document.addEventListener('touchend', handleTouchMove, false);
 
-		var xDown = null;                                                        
-		var yDown = null;                                                        
+		var firstTouch = null;                                                    
 
 		function handleTouchStart(evt) {   
 			var p = document.getElementById("p");
-			xDown = evt.changedTouches[0].clientX;                                      
-			yDown = evt.changedTouches[0].clientY;  
-			p.innerHTML = "X: " + xDown + " | Y: " + yDown;
+			firstTouch = evt.changedTouches[0];
+			p.innerHTML = "X: " + firstTouch.clientX + " | Y: " + firstTouch.clientY;
 			evt.preventDefault();                                    
 		};                                                
 
 		function handleTouchMove(evt) {
 			var p = document.getElementById("p");
 			p.innerHTML = "got to handle touch";
-			if ( ! xDown || ! yDown ) {
+			if ( ! firstTouch ) {
 				p.innerHTML = "no first touch";
 				return;
 			}
@@ -36,8 +34,8 @@
 			var xUp = evt.changedTouches[0].clientX;                                    
 			var yUp = evt.changedTouches[0].clientY;
 
-			var xDiff = xDown - xUp;
-			var yDiff = yDown - yUp;
+			var xDiff = firstTouch.clientX - xUp;
+			var yDiff = firstTouch.clientY - yUp;
 
 			if ( Math.abs( xDiff ) > Math.abs( yDiff ) ) {/*most significant*/
 				if ( xDiff > 0 ) {
@@ -53,8 +51,7 @@
 				}                                                                 
 			}
 			/* reset values */
-			xDown = null;
-			yDown = null;       
+			firstTouch = null;
 			evt.preventDefault();                                      
 		};
 	</script>
