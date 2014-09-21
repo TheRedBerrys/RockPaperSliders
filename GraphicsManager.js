@@ -52,7 +52,7 @@ var GraphicsManager = function(gameManager, rockImage, paperImage, scissorsImage
 	
 	this.clearContext = function() {
 		this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
-		canvas.width = canvas.width; // Fuck you, Android. https://code.google.com/p/android/issues/detail?id=41312
+		canvas.width = canvas.width; // Screw you, Android. https://code.google.com/p/android/issues/detail?id=41312
 	};
 
 	this.draw = function() {
