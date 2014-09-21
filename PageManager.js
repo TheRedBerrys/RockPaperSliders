@@ -13,7 +13,7 @@ imagesLoaded.scissors = false;
 
 var checkImages = function() {
 	if (imagesLoaded.rock && imagesLoaded.paper && imagesLoaded.scissors)
-		reset();
+		reset(false);
 };
 
 var rockImage = new Image();
@@ -39,10 +39,10 @@ scissorsImage.onload = function() {
 	checkImages();
 };
 
-var reset = function() {
+var reset = function(wait) {
 	gameManager = new GameManager(Levels[currLevel]);
 	graphicsManager = new GraphicsManager(gameManager, rockImage, paperImage, scissorsImage);
-	redraw();
+	redraw(wait);
 };
 
 var startNextGame = function() {
@@ -64,27 +64,32 @@ var startNextGame = function() {
 	}
 	
 	setLevel();
-	reset();
+	reset(true);
 };
 
-var redraw = function() {
+var redraw = function(wait) {
 	completedContainer.innerHTML = currCompleted;
 	levelContainer.innerHTML = (currLevel + 1) + " / " + Levels.length;
-	graphicsManager.draw(); 
+	if (wait) {
+		setTimeout(1000, graphicsManager.draw());
+	}
+	else {
+		graphicsManager.draw();
+	}
 };
 
 window.onresize = function() {
 	graphicsManager.resize();
-	redraw(); 
+	redraw(false); 
 };
 
 var makeMove = function(direction) {
 	gameManager.makeMove(direction);
-	redraw();
+	redraw(false);
 	if (gameManager.isSuccess())
 		startNextGame();
 	else if (gameManager.isFailure())
-		reset();
+		reset(true);
 };
 
 function setCookie(cname, cvalue, exdays) {
