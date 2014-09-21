@@ -83,18 +83,18 @@ var makeMove = function(direction) {
 		reset();
 };
 
-var setCookie = function(cname, cvalue, exdays) {
+function setCookie(cname, cvalue, exdays) {
     var d = new Date();
     d.setTime(d.getTime() + (exdays*24*60*60*1000));
     var expires = "expires="+d.toUTCString();
     document.cookie = cname + "=" + cvalue + "; " + expires;
 };
 
-var setLevel = function() {
+function setLevel() {
 	setCookie("level", currLevel, 1000);
 };
 
-var getCookie = function(cname) {
+function getCookie(cname) {
     var name = cname + "=";
     var ca = document.cookie.split(';');
     for(var i=0; i<ca.length; i++) {
@@ -105,7 +105,7 @@ var getCookie = function(cname) {
     return "";
 };
 
-var getLevel = function() {
+function getLevel() {
 	var levelCookie = getCookie("level");
 	if (levelCookie == "") {
 		return 0;
