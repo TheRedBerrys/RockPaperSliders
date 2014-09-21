@@ -2,9 +2,10 @@ var gameManager, graphicsManager;
 
 var currLevel = 0;
 var currCompleted = "___";
-getLevel();
 var completedContainer = document.getElementById("completed-container");
 var levelContainer = document.getElementById("level-container");
+getLevel();
+setLevel();
 	
 var imagesLoaded = {};
 imagesLoaded.rock = false;
@@ -40,9 +41,18 @@ scissorsImage.onload = function() {
 };
 
 var reset = function(wait) {
-	gameManager = new GameManager(Levels[currLevel]);
-	graphicsManager = new GraphicsManager(gameManager, rockImage, paperImage, scissorsImage);
-	redraw(wait);
+	if (wait) {
+		setTimeout(function() {
+			gameManager = new GameManager(Levels[currLevel]);
+			graphicsManager = new GraphicsManager(gameManager, rockImage, paperImage, scissorsImage);
+			redraw();
+		}, 700);
+	}
+	else {
+		gameManager = new GameManager(Levels[currLevel]);
+		graphicsManager = new GraphicsManager(gameManager, rockImage, paperImage, scissorsImage);
+		redraw();
+	}
 };
 
 var startNextGame = function() {
@@ -68,10 +78,8 @@ var startNextGame = function() {
 };
 
 var redraw = function(wait) {
-	completedContainer.innerHTML = currCompleted;
-	levelContainer.innerHTML = (currLevel + 1) + " / " + Levels.length;
 	if (wait) {
-		setTimeout(1000, graphicsManager.draw());
+		window.setTimeout(function() { graphicsManager.draw(); }, 1000);
 	}
 	else {
 		graphicsManager.draw();
@@ -80,12 +88,12 @@ var redraw = function(wait) {
 
 window.onresize = function() {
 	graphicsManager.resize();
-	redraw(false); 
+	redraw(); 
 };
 
 var makeMove = function(direction) {
 	gameManager.makeMove(direction);
-	redraw(false);
+	redraw();
 	if (gameManager.isSuccess())
 		startNextGame();
 	else if (gameManager.isFailure())
@@ -100,6 +108,8 @@ function setCookie(cname, cvalue, exdays) {
 };
 
 function setLevel() {
+	completedContainer.innerHTML = currCompleted;
+	levelContainer.innerHTML = (currLevel + 1) + " / " + Levels.length;
 	setCookie("level", currLevel + "|" + currCompleted, 1000);
 };
 
