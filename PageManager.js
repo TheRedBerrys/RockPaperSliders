@@ -1,6 +1,8 @@
 var gameManager, graphicsManager;
 
-var currLevel = getLevel();
+var currLevel = 0;
+var currCompleted = "___";
+getLevel();
 var completedContainer = document.getElementById("completed-container");
 var levelContainer = document.getElementById("level-container");
 	
@@ -47,25 +49,26 @@ var startNextGame = function() {
 	var tileCompleted = gameManager.getFirstTile();
 	
 	if (tileCompleted === "R") {
-		Levels[currLevel].completed = "R" + Levels[currLevel].completed.substring(1);
+		currCompleted = "R" + currCompleted.substring(1);
 	}
 	else if (tileCompleted === "P") {
-		Levels[currLevel].completed = Levels[currLevel].completed.substring(0, 1) + "P" + Levels[currLevel].completed.substring(2);
+		currCompleted = currCompleted.substring(0, 1) + "P" + currCompleted.substring(2);
 	}
 	else if (tileCompleted === "S") {
-		Levels[currLevel].completed = Levels[currLevel].completed.substring(0, 2) + "S";
+		currCompleted = currCompleted.substring(0, 2) + "S";
 	}
 	
-	if (Levels[currLevel].completed === "RPS") {
+	if (currCompleted === "RPS") {
 		currLevel++;
-		setLevel();
+		currCompleted = "___";
 	}
 	
+	setLevel();
 	reset();
 };
 
 var redraw = function() {
-	completedContainer.innerHTML = Levels[currLevel].completed;
+	completedContainer.innerHTML = currCompleted;
 	levelContainer.innerHTML = (currLevel + 1) + " / " + Levels.length;
 	graphicsManager.draw(); 
 };
@@ -92,7 +95,7 @@ function setCookie(cname, cvalue, exdays) {
 };
 
 function setLevel() {
-	setCookie("level", currLevel, 1000);
+	setCookie("level", currLevel + "|" + currCompleted, 1000);
 };
 
 function getCookie(cname) {
@@ -109,9 +112,12 @@ function getCookie(cname) {
 function getLevel() {
 	var levelCookie = getCookie("level");
 	if (levelCookie == "") {
-		return 0;
+		currLevel = 0;
+		currCompleted = "___";
 	}
 	else {
-		return parseInt(levelCookie);
+		var split = levelCookie.split("|");
+		currLevel = parseInt(split[0]);
+		currCompleted = split[1];
 	}
 };
