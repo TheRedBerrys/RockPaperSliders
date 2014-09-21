@@ -58,6 +58,7 @@ var startNextGame = function() {
 	
 	if (Levels[currLevel].completed === "RPS") {
 		currLevel++;
+		setLevel();
 	}
 	
 	reset();
