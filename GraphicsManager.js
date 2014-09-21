@@ -12,7 +12,7 @@ var GraphicsManager = function(gameManager, rockImage, paperImage, scissorsImage
 	
 	this.resize = function() {
 		var ratio = 1.25;
-		var maxHeight = window.innerHeight * 0.75;
+		var maxHeight = window.innerHeight * 0.65;
 		var maxWidth = window.innerWidth * 0.8;
 		
 		if (maxHeight < maxWidth * ratio) {
