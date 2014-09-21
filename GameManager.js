@@ -31,6 +31,10 @@ GameManager = function(level) {
 		return true;
 	};
 	
+	this.getFirstTile = function() {
+		return this.tiles[0][0];
+	};
+	
 	this.getTiles = function(tileString) {
 		var newTiles = [];
 		for (row = 0; row < this.rows; row++)

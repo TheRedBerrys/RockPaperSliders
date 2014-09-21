@@ -1,6 +1,8 @@
 var gameManager, graphicsManager;
 
 var currLevel = 0;
+var completedContainer = document.getElementById("completed-container");
+var levelContainer = document.getElementById("level-container");
 	
 var imagesLoaded = {};
 imagesLoaded.rock = false;
@@ -42,11 +44,28 @@ var reset = function() {
 };
 
 var startNextGame = function() {
-	currLevel++;
+	var tileCompleted = gameManager.getFirstTile();
+	
+	if (tileCompleted === "R") {
+		Levels[currLevel].completed = "R" + Levels[currLevel].completed.substring(1);
+	}
+	else if (tileCompleted === "P") {
+		Levels[currLevel].completed = Levels[currLevel].completed.substring(0, 1) + "P" + Levels[currLevel].completed.substring(2);
+	}
+	else if (tileCompleted === "S") {
+		Levels[currLevel].completed = Levels[currLevel].completed.substring(0, 2) + "S";
+	}
+	
+	if (Levels[currLevel].completed === "RPS") {
+		currLevel++;
+	}
+	
 	reset();
 };
 
-var redraw = function() { 
+var redraw = function() {
+	completedContainer.innerHTML = Levels[currLevel].completed;
+	levelContainer.innerHTML = (currLevel + 1) + " / " + Levels.length;
 	graphicsManager.draw(); 
 };
 
