@@ -111,7 +111,7 @@ function setLevel() {
 	completedContainer.innerHTML = currCompleted;
 	levelContainer.innerHTML = (currLevel + 1) + " / " + Levels.length;
 	setCookie("level", currLevel + "|" + currCompleted, 1000);
-	alert(document.cookie);
+	//alert(document.cookie);
 };
 
 function getCookie(cname) {
