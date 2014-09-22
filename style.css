@@ -7,7 +7,7 @@
 	background-color: #faf8ef;
 }
 
-.completed-container, .level-container {
+.completed-container, .level-container, .instructions-container {
 	position:relative;
 	padding: 15px;
 	font-family: "Trebuchet MS", Helvetica, sans-serif;
@@ -17,6 +17,10 @@
 	width: 150px;
 	background-color: #faf8ef;
 	text-align: center;
+}
+
+.instructions-container {
+	width: 200px;
 }
 
 .completed-container:after, .level-container:after {

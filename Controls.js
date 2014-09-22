@@ -64,3 +64,7 @@ document.body.addEventListener("touchend", function(evt) {
 		makeMove(direction);
 	}
 }, false);
+
+document.getElementById("instructions").addEventListener("click", function(evt) {
+	window.open("instructions.html", '_blank');
+}, false);
