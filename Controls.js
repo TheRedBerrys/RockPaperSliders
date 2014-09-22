@@ -41,19 +41,21 @@ document.body.addEventListener("touchend", function(evt) {
 		var absDX = Math.abs(dX);
 		var absDY = Math.abs(dY);
 		
-		if (Math.abs(dX) > Math.abs(dY))
-		{
-			if (dX > 0)
-				direction = "right";
+		if (absDX > 10 || absDY > 10) {
+			if (absDX > absDY)
+			{
+				if (dX > 0)
+					direction = "right";
+				else
+					direction = "left";
+			}
 			else
-				direction = "left";
-		}
-		else
-		{
-			if (dY > 0)
-				direction = "down";
-			else
-				direction = "up";
+			{
+				if (dY > 0)
+					direction = "down";
+				else
+					direction = "up";
+			}
 		}
 		
 		firstTouchX = null;
