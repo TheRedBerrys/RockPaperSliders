@@ -69,7 +69,7 @@ Levels = [
 	{ columns: 3, rows: 3, tiles: "RRSSSPSSR", selectedColumn: 0, selectedRow: 0 , completed: "___"},
 	{ columns: 3, rows: 3, tiles: "SSRSPPPRR", selectedColumn: 2, selectedRow: 1 , completed: "___"},
 	{ columns: 3, rows: 3, tiles: "RSPPRSRSS", selectedColumn: 1, selectedRow: 2 , completed: "___"},
-	{ columns: 3, rows: 3, tiles: "SPSPPSPRS", selectedColumn: 0, selectedRow: 2 , completed: "___"},
+	{ columns: 3, rows: 3, tiles: "SPSPPSPRS", selectedColumn: 2, selectedRow: 0 , completed: "___"},
 	{ columns: 3, rows: 3, tiles: "PSPSSRSRP", selectedColumn: 1, selectedRow: 1 , completed: "___"},
 	{ columns: 4, rows: 4, tiles: "SRSSPSSPPRSPPPSP", selectedColumn: 3, selectedRow: 3 , completed: "___"},
 	{ columns: 4, rows: 4, tiles: "PPPRSSRRPPSRRRSR", selectedColumn: 1, selectedRow: 2 , completed: "___"},
