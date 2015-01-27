@@ -1,0 +1,71 @@
+<html>
+	<head>
+		<title>Touch Tester</title>
+		<style>
+			#p {
+				font-size: 500%
+			}
+		</style>
+	</head>
+	<body>
+		<p id="p">touchtest</p>
+	</body>
+	<script type="text/javascript">
+
+		var firstTouchX = null;
+		var firstTouchY = null;
+		var p = document.getElementById("p");
+		
+		document.addEventListener("touchstart", function(evt) {
+			evt.preventDefault();
+			if (!firstTouchX || !firstTouchY) {
+				firstTouchX = evt.changedTouches[0].clientX;
+				firstTouchY = evt.changedTouches[0].clientY;
+				p.innerHTML = "Start touch: " + firstTouchX + "," + firstTouchY + 
+					" <br> " + p.innerHTML;
+			}
+		}, false);
+		
+		document.addEventListener("touchmove", function(evt) {
+			evt.preventDefault();
+		}, false);
+		
+		document.addEventListener("touchend", function(evt) {
+			evt.preventDefault();
+			var lastTouch = evt.changedTouches[0];
+			
+			if (firstTouchX && firstTouchY) {
+				var dX = lastTouch.clientX - firstTouchX;
+				var dY = lastTouch.clientY - firstTouchY;
+				
+				var direction = "";
+				if (Math.abs(dX) > Math.abs(dY)) {
+					if (dX > 0)
+						direction = "right";
+					else
+						direction = "left";
+				}
+				else {
+					if (dY > 0)
+						direction = "down";
+					else
+						direction = "up";
+				}
+				
+				p.innerHTML = "First touch: " + firstTouchX + "," + firstTouchY + 
+					" <br> Last touch: " + lastTouch.clientX + "," + lastTouch.clientY + 
+					" <br> Difference: " + dX + "," + dY + 
+					" <br> Direction: " + direction + 
+					" <br> " + p.innerHTML;
+				
+				firstTouchX = null;
+				firstTouchY = null;
+			}
+			else {
+				p.innerHTML = "Couldn't get first touch. | Last touch: " + lastTouch.clientX + "," + lastTouch.clientY + 
+					" <br> " + p.innerHTML;
+			}
+		}, false);
+		
+	</script>
+</html>

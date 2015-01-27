@@ -1,0 +1,58 @@
+<html>
+	<head>
+		<title>Touch Tester</title>
+		<style>
+			#p {
+				font-size: 500%
+			}
+		</style>
+	</head>
+	<body>
+		<p id="p">touchtest2</p>
+	</body>
+	<script type="text/javascript">
+		document.addEventListener('touchstart', handleTouchStart, false);        
+		document.addEventListener('touchend', handleTouchMove, false);
+
+		var firstTouch = null;                                                    
+
+		function handleTouchStart(evt) {   
+			var p = document.getElementById("p");
+			firstTouch = evt.changedTouches[0];
+			p.innerHTML = "X: " + firstTouch.clientX + " | Y: " + firstTouch.clientY;
+			evt.preventDefault();                                    
+		};                                                
+
+		function handleTouchMove(evt) {
+			var p = document.getElementById("p");
+			p.innerHTML = "got to handle touch";
+			if ( ! firstTouch ) {
+				p.innerHTML = "no first touch";
+				return;
+			}
+
+			var xUp = evt.changedTouches[0].clientX;                                    
+			var yUp = evt.changedTouches[0].clientY;
+
+			var xDiff = firstTouch.clientX - xUp;
+			var yDiff = firstTouch.clientY - yUp;
+
+			if ( Math.abs( xDiff ) > Math.abs( yDiff ) ) {/*most significant*/
+				if ( xDiff > 0 ) {
+					p.innerHTML = "left";
+				} else {
+					p.innerHTML = "right";
+				}                       
+			} else {
+				if ( yDiff > 0 ) {
+					p.innerHTML = "up";
+				} else { 
+					p.innerHTML = "down";
+				}                                                                 
+			}
+			/* reset values */
+			firstTouch = null;
+			evt.preventDefault();                                      
+		};
+	</script>
+</html>
