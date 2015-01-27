@@ -76,6 +76,11 @@ var GraphicsManager = function(gameManager, rockImage, paperImage, scissorsImage
 		this.context.strokeRect(startX, startY, width, height);
 	};
 	
+	this.animate = function(oldColumn, oldRow, newColumn, newRows, oldTile, newTile, winningTile) {
+		
+		this.draw();
+	};
+	
 	this.setup(gameManager, rockImage, paperImage, scissorsImage);
 	this.resize();
 };
